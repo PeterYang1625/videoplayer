@@ -33,7 +33,7 @@ import javafx.util.Duration;
 public class VideoPlayer extends Application{
 
     //Index for each video in the list
-    //TODO, change data structuring to be a linear doubly linked list, probably
+    //TODO, change data structuring to be a doubly noncircular linked list, probably, maybe???
     private static int currVid = 0;
 
     public static void main(String[] args){
@@ -85,6 +85,9 @@ public class VideoPlayer extends Application{
         currPlayer.setOnReady(new Runnable(){
             @Override
             public void run(){
+                /**
+                Min width calculation has been removed because it ran into issues when the source video was larger than the display monitor itself
+                */
                 //int w = player.getMedia().getWidth();
                 //int h = player.getMedia().getHeight();
                 //stage.setMinWidth(w);
@@ -93,6 +96,7 @@ public class VideoPlayer extends Application{
                 slider.setMin(0);
                 slider.setValue(0);
                 slider.setMax(currPlayer.getTotalDuration().toSeconds());
+                //By default set the slider somewhere far out of view
                 vbox.setTranslateY(-1000);
             }
         });
